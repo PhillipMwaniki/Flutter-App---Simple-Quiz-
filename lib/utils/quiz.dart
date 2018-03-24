@@ -1,4 +1,4 @@
-import 'package:quiz/utils/question.dart';
+import './question.dart';
 
 class Quiz {
   List<Question> _questions;
@@ -12,7 +12,13 @@ class Quiz {
   int get length => _questions.length;
   int get questionNumber => _currentQuestionIndex+1;
 
-  Question get nextQuestion {
+//  Question get nextQuestion {
+//    _currentQuestionIndex++;
+//    if (_currentQuestionIndex >= length) return null;
+//    return _questions[_currentQuestionIndex];
+//  }
+
+  Question nextQuestion() {
     _currentQuestionIndex++;
     if (_currentQuestionIndex >= length) return null;
     return _questions[_currentQuestionIndex];
