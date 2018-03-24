@@ -31,7 +31,6 @@ class QuizPageState extends State<QuizPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     currentQuestion = quiz.nextQuestion();
     questionText = currentQuestion.question;
@@ -39,6 +38,7 @@ class QuizPageState extends State<QuizPage> {
   }
 
   void handleAnswer(bool answer) {
+    print("was clicked");
     isCorrect = (currentQuestion.answer == answer);
     quiz.answer(isCorrect);
     this.setState(() {
@@ -55,11 +55,19 @@ class QuizPageState extends State<QuizPage> {
         new Column(
           children: <Widget>[
             new AnswerButton(true, () => handleAnswer(true)),
-            new QuestionText("Pizza is nice", 1),
+            new QuestionText(questionText, questionNUmber),
             new AnswerButton(false,  () => handleAnswer(false))
           ],
         ),
-        overlayShouldBeVisible == true ? new CorrectWrongOverlay(isCorrect) : new Container()
+        overlayShouldBeVisible == true ? new CorrectWrongOverlay(isCorrect,
+            () {
+          currentQuestion = quiz.nextQuestion();
+          this.setState(() {
+            overlayShouldBeVisible = false;
+            questionText = currentQuestion.question;
+            questionNUmber = quiz.questionNumber;
+          });
+            }) : new Container()
       ],
     );
   }
