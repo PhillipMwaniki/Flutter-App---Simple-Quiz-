@@ -36,7 +36,7 @@ class CorrectWrongOverlayState extends State<CorrectWrongOverlay> with SingleTic
     return new Material(
       color: Colors.black54,
       child: new InkWell(
-        onTap: () => widget._onTap,
+        onTap: () => widget._onTap(),
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
