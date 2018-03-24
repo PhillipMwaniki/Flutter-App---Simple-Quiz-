@@ -65,7 +65,8 @@ class QuizPageState extends State<QuizPage> {
         overlayShouldBeVisible == true ? new CorrectWrongOverlay(isCorrect,
             () {
           if (quiz.length == questionNUmber) {
-            Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new LandingPage()));
+            Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new ScorePage(quiz.score, quiz.length)));
+            return;
           }
           currentQuestion = quiz.nextQuestion();
           this.setState(() {
